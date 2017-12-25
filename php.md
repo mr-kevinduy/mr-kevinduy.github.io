@@ -2,26 +2,17 @@
 
 > ##### Before or After readed this post. You can read more in [OOP5](http://php.net/manual/en/oop5.intro.php)
 
-## 1. Variables Scope and keyworks
-## 2. Reference
-
-## 3. Short syntaxs
-
-## 4. Namespace (5.3)
-
-## 5. Traits (5.4)
-
-## 6. Autoloading (5.0)
-
-## 7. PSR
-
-## 8. Concepts in OOP
-
-## 9. Design Patterns
-
-## 10. DI (Dependency Injection) and IoC (Inversion of Control)
-
-## 11. SOLID
+1. Variables Scope and keyworks
+2. Refernce
+3. Short syntaxs
+4. Namespace (5.3)
+5. Traits (5.4)
+6. Autoloading (5.0)
+7. PSR
+8. Concepts in ÔP
+9. Design Patterns
+10. DI (Dependency Injection) and IoC (Inversion of Control)
+11. SOLID
 
 # -------------------  Start --------------------
 
@@ -77,17 +68,51 @@ Phạm vi của biến liên quan đến code flow.
 
 Một biến chỉ có thể có tác dụng ở trong hàm(function), hay trong 1 class, hay ở trong bất kỳ đâu ở trong file code.
 
+- Nếu muốn biến global có thể dùng đc trong function xxx()
+
+thì ta khai báo biến global đó với từ khóa global ( hoặc dùng $GLOBALS['ten_bien_global']]] )trong hàm là đc.
+Ex 1:
+<?php
+$x = 5;
+$y = 10;
+
+function myTest() {
+    global $x, $y;
+    $y = $x + $y
+}
+
+myTest();
+echo $y; // outputs 15
+?>
+
+Ex 2:
+<?php
+$x = 5;
+$y = 10;
+
+function myTest() {
+    $GLOBALS['y'] = $GLOBALS['x'] + $GLOBALS['y'];
+}
+
+myTest();
+echo $y; // outputs 15
+?>
+
 Với PHP có 3 kiểu phạm vi biến: global, local, static
 
 + Global (Biến toàn cục) và Local (Biến cục bộ) các bạn có thể xem hình ở trên
 
-+ Static : Đây là kiểu biến giống với local (biến cục bộ). Nhưng static sẽ không bị xóa khi kết thúc hàm. Nó là biến tĩnh lên gía trị sẽ ko bị xóa và luôn luôn lưu trữ theo gía trị trước đó. Chúng ta sẽ xem ví dụ này để hiểu nha:
++ Static : Đây là kiểu biến giống với local (biến cục bộ). Nhưng static sẽ không bị xóa khi kết thúc hàm.
+
+Nó là biến tĩnh lên gía trị sẽ ko bị xóa và luôn luôn lưu trữ theo gía trị trước đó.
+
+Chúng ta sẽ xem ví dụ này để hiểu nha:
 
 Ví dụ cho local:
 <?php
     function Test()
     {
-        $x = 0;
+        $x = 0; // Biến local
         echo $x;
         $x++;
     }
@@ -103,7 +128,7 @@ Ví dụ cho static:
 <?php
     function Test()
     {
-        static $x = 0;
+        static $x = 0; // Biến static
         echo $x;
         $x++;
     }
@@ -118,8 +143,23 @@ Ví dụ cho static:
 
 ### 1.2- Keyworks:
 
-    + public, protected, private, static, final
-    + this, self
++ public, protected, private, static, final
++ this, self
+
+- public, protected and private được gọi là visibility.
+
+- public: có phạm vi cộng đồng. nghĩa là có thể truy cập ở bất kì đâu.
+- protected: có phạm vi trong class chứa nó và class kế thừa class chứa nó.
+- private: có phạm vi chỉ trong class chứa nó
+
+- static: biến tĩnh, hàm tĩnh.
+
+- final: final class là class cuối cùng. nghĩa là sẽ ko có 1 class nào kế thừa từ nó (Nó vô sinh.).
+Hoặc final function thì nó sẽ ko thể override ở class kế thừa class chứa nó.
+=> tránh trường hợp định nghĩa 1 hàm trùng tên với hàm ở lớp cha ( hàm ở lớp cha là final function xx(){})
+
+- this: chỉ đối tượng
+- self: chỉ chính class đó (class có function static, biến static)
 
 ## 2. Reference
 
