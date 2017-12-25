@@ -3,9 +3,33 @@
 > ##### Before or After readed this post. You can read more in [OOP5](http://php.net/manual/en/oop5.intro.php)
 
 ## 1. Variables Scope and keyworks
+## 2. Reference
 
-- Variables Scope (Phạm vi của biến):
-    
+## 3. Short syntaxs
+
+## 4. Namespace (5.3)
+
+## 5. Traits (5.4)
+
+## 6. Autoloading (5.0)
+
+## 7. PSR
+
+## 8. Concepts in OOP
+
+## 9. Design Patterns
+
+## 10. DI (Dependency Injection) and IoC (Inversion of Control)
+
+## 11. SOLID
+
+# -------------------  Start --------------------
+
+## 1. Variables Scope and keyworks
+
+### 1.1- Variables Scope (Phạm vi của biến):
+Reference: [php variables](https://www.w3schools.com/php/php_variables.asp)
+
 + global (Biến toàn cục)
 + local ( Biến cục bộ)
 + static ( Biến tĩnh)
@@ -92,7 +116,7 @@ Ví dụ cho static:
 ?>
 ```
 
-### - Keyworks:
+### 1.2- Keyworks:
 
     + public, protected, private, static, final
     + this, self
