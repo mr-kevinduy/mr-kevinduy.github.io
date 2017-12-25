@@ -4,12 +4,95 @@
 
 ## 1. Variables Scope and keyworks
 
-- Variables Scope:
-    + local
-    + global ($GLOBALS[''])
-    + static
+### - Variables Scope (Phạm vi của biến):
+    
+    + global (Biến toàn cục)
+    + local ( Biến cục bộ)
+    + static ( Biến tĩnh)
 
-- Keyworks:
+
+    ```
+    Hi all,
+
+    Đây có lẽ là kiến thức rất rất quan trọng mà ở trong bất kỳ một ngôn ngữ nào bạn cũng phải biết.
+    
+    Scope là gì? Scope dịch ra là "phạm vi". 1 "phạm vi" chính là 1 khối code nằm trong dấu ngoặc nhọn {} . Khái niệm này giống hệt ở trong javascript .
+
+    VD về scope:
+    class XXX
+    {
+        // Tất cả code ở đây là thuộc về 1 scope
+
+        $bien1 = 1;  // Variable Global
+
+        function xxx()
+        {
+            // Tất cả code ở đây là thuộc về 1 scope
+
+            $bien2 = 2; // Variable Local
+            echo "Function xxx with bien1: " . $bien1;
+            echo "Function xxx with bien2: " . $bien2;
+
+        }
+
+        $bien3 = 3;
+
+        echo "Bien 1 ở trong scope class: " . $bien1;                                         // Bien 1 ở trong scope class: 1
+        echo "Bien 2 ở trong scope function xxx nen echo bien2 là lỗi (error): " . $bien2;    // Bien 2 ở trong scope function xxx nen echo bien2 là lỗi (error):
+        echo "Bien 3 ở trong scope class: " . $bien3;                                         // Bien 3 ở trong scope class: 3
+
+        // Gọi hàm xxx
+        xxx();  // Function xxx with bien1:
+                // Function xxx with bien2: 2
+    }
+
+    # ![Php variables scope](php-variables-scope.png)
+
+    Phạm vi của biến liên quan đến code flow.
+
+    Một biến chỉ có thể có tác dụng ở trong hàm(function), hay trong 1 class, hay ở trong bất kỳ đâu ở trong file code.
+    
+    Với PHP có 3 kiểu phạm vi biến: global, local, static
+
+    + Global (Biến toàn cục) và Local (Biến cục bộ) các bạn có thể xem hình ở trên
+
+    + Static : Đây là kiểu biến giống với local (biến cục bộ). Nhưng static sẽ không bị xóa khi kết thúc hàm. Nó là biến tĩnh lên gía trị sẽ ko bị xóa và luôn luôn lưu trữ theo gía trị trước đó. Chúng ta sẽ xem ví dụ này để hiểu nha:
+
+    Ví dụ cho local:
+    <?php
+        function Test()
+        {
+            $x = 0;
+            echo $x;
+            $x++;
+        }
+
+        // Goi ham Test
+        Test();  // Kết quả: 0
+
+        // Goi ham Test lần nữa
+        Test(); // Kết quả: 0
+    ?>
+
+    Ví dụ cho static:
+    <?php
+        function Test()
+        {
+            static $x = 0;
+            echo $x;
+            $x++;
+        }
+
+        // Goi ham Test
+        Test();  // Kết quả: 0
+
+        // Goi ham Test lần nữa
+        Test(); // Kết quả: 1
+    ?>
+
+
+    ```
+### - Keyworks:
 
     + public, protected, private, static, final
     + this, self
