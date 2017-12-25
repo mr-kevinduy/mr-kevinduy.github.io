@@ -4,8 +4,6 @@
 
 *** Hi. Everyone!
 
-I'm Duy Tu.
-
 [Javascript](https://mr-kevinduy.github.io/javascript)
 
 [PHP](https://mr-kevinduy.github.io/php)
