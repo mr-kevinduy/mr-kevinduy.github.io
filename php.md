@@ -3,13 +3,13 @@
 > ##### Before or After readed this post. You can read more in [OOP5](http://php.net/manual/en/oop5.intro.php)
 
 1. Variables Scope and keyworks
-2. Refernce
+2. Reference
 3. Short syntaxs
 4. Namespace (5.3)
 5. Traits (5.4)
 6. Autoloading (5.0)
 7. PSR
-8. Concepts in ÔP
+8. Concepts in OOP
 9. Design Patterns
 10. DI (Dependency Injection) and IoC (Inversion of Control)
 11. SOLID
@@ -35,34 +35,32 @@ Scope là gì? Scope dịch ra là "phạm vi". 1 "phạm vi" chính là 1 khố
 Khái niệm này giống hệt ở trong javascript .
 
 VD về scope:
-class XXX
+
+// Tất cả code ở đây là thuộc về 1 scope global
+
+$bien1 = 1;  // Variable Global
+
+function xxx()
 {
     // Tất cả code ở đây là thuộc về 1 scope
 
-    $bien1 = 1;  // Variable Global
+    $bien2 = 2; // Variable Local
+    echo "Function xxx with bien1: " . $bien1;
+    echo "Function xxx with bien2: " . $bien2;
 
-    function xxx()
-    {
-        // Tất cả code ở đây là thuộc về 1 scope
-
-        $bien2 = 2; // Variable Local
-        echo "Function xxx with bien1: " . $bien1;
-        echo "Function xxx with bien2: " . $bien2;
-
-    }
-
-    $bien3 = 3;
-
-    echo "Bien 1 ở trong scope class: " . $bien1;                                         // Bien 1 ở trong scope class: 1
-    echo "Bien 2 ở trong scope function xxx nen echo bien2 là lỗi (error): " . $bien2;    // Bien 2 ở trong scope function xxx nen echo bien2 là lỗi (error):
-    echo "Bien 3 ở trong scope class: " . $bien3;                                         // Bien 3 ở trong scope class: 3
-
-    // Gọi hàm xxx
-    xxx();  // Function xxx with bien1:
-            // Function xxx with bien2: 2
 }
+
+$bien3 = 3;
+
+echo "Bien 1 ở trong scope class: " . $bien1;                                         // Bien 1 ở trong scope class: 1
+echo "Bien 2 ở trong scope function xxx nen echo bien2 là lỗi (error): " . $bien2;    // Bien 2 ở trong scope function xxx nen echo bien2 là lỗi (error):
+echo "Bien 3 ở trong scope class: " . $bien3;                                         // Bien 3 ở trong scope class: 3
+
+// Gọi hàm xxx
+xxx();  // Function xxx with bien1:
+        // Function xxx with bien2: 2
 ```
-# ![Php variables scope](php-variables-scope.png)
+
 ```
 Phạm vi của biến liên quan đến code flow.
 
