@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Facebook</title>
+</head>
+<body>
+  <h1>Test Facebook Messager</h1>
+  <fb:login-button scope="publish_actions,public_profile,email" autologoutlink="true" onlogin="checkLoginState();"></fb:login-button>
+  <div id="status"></div>
+  <div id="info"></div>
+  <div class="fb-customerchat"
+   page_id="627560380687900"
+   theme_color="#67B868"
+   logged_in_greeting="Xin chao, Toi co the giup j"
+   logged_out_greeting="Lam on, dang nhap facebook.">
+  </div>
+
+  <script>
+    function statusChangeCallback(response) {
+      console.log(response);
+      if (response.status === 'connected') {
+        // Logged into your app and Facebook.
+        testAPI();
+      } else {
+        // The person is not logged into your app or we are unable to tell.
+        document.getElementById('status').innerHTML = 'Please log ' +
+          'into this app.';
+      }
+    }
+
+    function checkLoginState() {
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+        location.reload();
+      });
+    }
+
+    function login() {
+      FB.login(function(response) {
+        if (response.status === 'connected') {
+          testAPI();
+        } else {
+          document.getElementById('status').innerHTML = 'Please log ' +
+          'into this app.';
+        }
+      });
+
+      location.reload();
+
+      // FB.login(function(){
+      //   // Note: The call will only work if you accept the permission request
+      //   FB.api('/me/feed', 'post', {message: 'Hello, world!'});
+      //   location.reload();
+      // }, {scope: 'publish_actions'});
+    }
+
+    function logout() {
+      FB.logout(function(response) {
+        document.getElementById('status').innerHTML = 'You is now logged out.';
+        location.reload();
+      });
+    }
+
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId            : '340231906161242',
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v2.12'
+      });
+
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+
+    function testAPI() {
+      FB.api('/me', function(response) {
+        console.log(response);
+        
+        document.getElementById('status').innerHTML =
+          'Thanks for logging in, ' + response.name + '!';
+        
+        FB.api('/' + response.id + '/accounts', 'GET', {}, function(response) {
+            console.log("User:", response);
+            
+            if (response.data) {
+              result = '';
+              count = 1;
+
+              response.data.map(function (rs, index) {
+                result += rs.name + ', ';
+                count += index;
+              })
+
+              document.getElementById('info').innerHTML =
+            'You have ' + count + ' apps: ' + result + '!';
+            }
+          }
+        );
+
+        FB.api('/me/feed', 'post', {message: 'Hello, ' + response.name + '!'});
+      });
+    }
+  </script>
+</body>
+</html>
