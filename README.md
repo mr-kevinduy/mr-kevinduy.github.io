@@ -1,4 +1,4 @@
-# [mr-kevinduy.github.io](https://mr-kevinduy.github.io)
+# ➡ Go to my site 💓 [mr-kevinduy.github.io](https://mr-kevinduy.github.io)
 
 ```Mr.KevinDuy is a front-end developer```
 
