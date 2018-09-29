@@ -1,4 +1,4 @@
-#Database: Seeding
+# Database: Seeding
 
 1. Giới thiệu
 2. Viết Seeders
@@ -6,13 +6,13 @@
     - Gọi thêm Seeders
 3. Chạy Seeders
 
-##1. Giới thiệu
+## 1. Giới thiệu
 Laravel bao gồm một phương thức đơn giản để tạo DB với dữ liệu thử nghiệm dùng seed classes.
 Tất cả những seed classes là được lưu trong thư mục `database/seeds`.
 Seed classes có thể có bất kỳ tên nào mà bạn muốn nhưng có lẽ nên theo một vài quy ước hợp lý, như `UsersTableSeeder`, vân vân ...
 Bởi mặc định, một `DatabaseSeeder` class là được định nghĩa cho bạn. Từ class này bạn có thể dùng phương thức `call` để chạy những seed classes khác, cho phép bạn có thể điều khiển được thứ tự seeding.
 
-##2. Viết Seeders
+## 2. Viết Seeders
 Để tạo một seeder, thực hiện lệnh artisan `make:seeder`. Tất cả các seeders được tạo bởi framework sẽ được đặt trong thư mục `database/seeds`:
 
 ```
@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
 ?>
 ```
 
-### Sử dụng Model Factories
+### 2.1 Sử dụng Model Factories
 Tất nhiên, chỉ định thủ công thuộc tính mỗi một model seed là rườm rà. Thay thế, bạn có thể dùng `model factories` để thuận tiện (conveniently) tạo số lượng lớn bản ghi DB. Đầu tiên, xem `model factory documentation` để học cách định nghĩa các factories.
 Cùng một lúc bạn có thể định nghĩa nhiều factories, bạn có thể dùng `factory` helper function để thêm bản ghi vào trong DB.
 
@@ -69,7 +69,7 @@ public function run()
 }
 ```
 
-### Gọi thêm seeders
+### 2.2 Gọi thêm seeders
 Trong `DatabaseSeeder` class, bạn có thể dùng phương thức `call` để thực hiện thêm các seed classes.
 Dùng phương thức `call` cho phép bạn chia nhỏ DB seeding thành nhiều tệp tin bởi để không có một seeder class đơn lẻ trở lên vô cùng lớn (overwhelmingly large).
 Qua tên seeder class mà bạn muốn chạy:
@@ -90,7 +90,7 @@ public function run()
 }
 ```
 
-### Chạy Seeders
+## 3. Chạy Seeders
 Mỗi lần bạn viết seeder, bạn có thể cần tạo `Composer's autoloader` sử dụng lệnh `dump-autoload`:
 
 ```
