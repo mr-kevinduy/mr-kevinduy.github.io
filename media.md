@@ -2,6 +2,7 @@
 
 [DASH](https://mr-kevinduy.github.io/media/dash/index.html)
 [DASH - Debug](https://mr-kevinduy.github.io/media/dash/debug.html)
+[DASH - VideoJs v6](https://mr-kevinduy.github.io/media/dash/v6.html)
 
 [HLS](https://mr-kevinduy.github.io/media/hls/index.html)
 [HLS - Debug](https://mr-kevinduy.github.io/media/hls/debug.html)
