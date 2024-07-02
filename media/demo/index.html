@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>VideoJS MPEG-DASH</title>
+
+    <!--[if gt IE 9 | !IE ]><!-->
+    <link href="https://vjs.zencdn.net/7.3.0/video-js.css" rel="stylesheet">
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <script src="/media/js/html5shiv.js"></script>
+    <script src="/media/js/selectivizr.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container" style="max-width: 900px; margin: 0 auto; padding: 50px 20px;">
+        <div id="player"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/media/js/lib.js"></script>
+    <script src="/media/js/common.js"></script>
+
+    <!--[if gt IE 9 | !IE ]><!-->
+    <script type="text/javascript" src="/media/js/video.js/7.3.0/video.js"></script>
+    <script type="text/javascript" src="/media/js/dash.all.min.js"></script>
+    <script type="text/javascript" src="/media/js/videojs-dash.js"></script>
+    <![endif]-->
+
+    <script>
+        (function($) {
+            "use strict";
+
+            var type = 3;
+            var poster = '//vjs.zencdn.net/v/oceans.png';
+            var src = '//vjs.zencdn.net/v/oceans.mp4',
+                videoType = 'video/mp4';
+
+            if (type === 3) {
+                src = 'https://s3.amazonaws.com/_bc_dml/example-content/sintel_dash/sintel_vod.mpd';
+                videoType = 'application/dash+xml';
+            } else if (type = 4) {
+                src = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
+                videoType = 'application/x-mpegURL';
+            }
+
+            var videoElement = $("<video>")
+                    .attr({
+                        "class"             : "video-js",
+                        "controls"          : "true",
+                        "preload"           : "auto",
+                        "webkit-playsinline": "true",
+                        "playsinline"       : "true"
+                    })
+                    .appendTo("#player");
+
+            var videoPlayer = $("#player > video")[0];
+
+            //fix playback rate of hls on android
+            videojs.options.hls.overrideNative = true
+
+            var option = {
+                autoplay: true,
+                fluid: true,
+                controlBar: {
+                    volumePanel: {inline: false }
+                }
+            };
+
+            var isPlayed = false;
+
+            video = videojs(videoPlayer, option);
+            video.poster(poster);
+
+            videoSrc = [
+                {
+                    type: videoType,
+                    src: src
+                }
+            ];
+
+            video.src(videoSrc);
+        })(jQuery);
+    </script>
+</body>
+</html>
