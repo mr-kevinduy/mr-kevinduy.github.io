@@ -44,11 +44,14 @@
             var src = '//vjs.zencdn.net/v/oceans.mp4',
                 videoType = 'video/mp4';
 
+            var cf = 'https://d25ytegsebvvmd.cloudfront.net';
             if (type === 3) {
-                src = 'https://s3.amazonaws.com/_bc_dml/example-content/sintel_dash/sintel_vod.mpd';
+                // src = 'https://s3.amazonaws.com/_bc_dml/example-content/sintel_dash/sintel_vod.mpd';
+                src = cf + '/elastic-transcoder/c53d1740fd30d8cc30e1d1cd72d152b635050138/mpd/c53d1740fd30d8cc30e1d1cd72d152b635050138_high_PL.mpd';
                 videoType = 'application/dash+xml';
             } else if (type = 4) {
-                src = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
+                // src = 'https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8';
+                src = cf + '/elastic-transcoder/c53d1740fd30d8cc30e1d1cd72d152b635050138/hls/c53d1740fd30d8cc30e1d1cd72d152b635050138_high_PL.m3u8';
                 videoType = 'application/x-mpegURL';
             }
 
