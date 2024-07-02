@@ -39,6 +39,7 @@
             "use strict";
 
             var type = 3;
+            var video;
             var poster = '//vjs.zencdn.net/v/oceans.png';
             var src = '//vjs.zencdn.net/v/oceans.mp4',
                 videoType = 'video/mp4';
@@ -79,14 +80,12 @@
             video = videojs(videoPlayer, option);
             video.poster(poster);
 
-            videoSrc = [
+            video.src([
                 {
                     type: videoType,
                     src: src
                 }
-            ];
-
-            video.src(videoSrc);
+            ]);
         })(jQuery);
     </script>
 </body>
