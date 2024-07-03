@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>VideoJS MPEG-DASH</title>
+
+    <!--[if gt IE 9 | !IE ]><!-->
+    <link href="https://vjs.zencdn.net/7.3.0/video-js.css" rel="stylesheet">
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <script src="/media/js/html5shiv.js"></script>
+    <script src="/media/js/selectivizr.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container" style="max-width: 900px; margin: 0 auto; padding: 50px 20px;">
+        <div id="player"></div>
+
+        <div id="video-html5-default" style="margin-top: 50px;">
+            <video width="320" height="240" controls>
+                <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/media/js/lib.js"></script>
+    <script src="/media/js/common.js"></script>
+
+    <!--[if gt IE 9 | !IE ]><!-->
+    <script type="text/javascript" src="/media/js/video.js/7.3.0/video.js"></script>
+    <script type="text/javascript" src="/media/js/dash.all.min.js"></script>
+    <script type="text/javascript" src="/media/js/videojs-dash.js"></script>
+    <![endif]-->
+
+    <script>
+        (function($) {
+            "use strict";
+
+            var domReady = function() {
+            };
+
+            $(document).on("ready", domReady);
+        })(jQuery);
+    </script>
+</body>
+</html>
