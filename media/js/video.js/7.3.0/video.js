@@ -11420,6 +11420,7 @@
   function setTech(middleware, tech) {
     console.log('setTech');
     middleware.forEach(function (mw) {
+      console.log('setTech tech: ', tech);
       console.log('setTech mw: ', mw);
       return mw.setTech && mw.setTech(tech);
     });
@@ -22384,6 +22385,8 @@
     _proto.loadTech_ = function loadTech_(techName, source) {
       var _this2 = this;
 
+      console.log('_proto.loadTech_::techName: ', techName);
+      console.log('_proto.loadTech_::this.tech_: ', this.tech_);
       // Pause and remove current playback technology
       if (this.tech_) {
         this.unloadTech_();
@@ -22392,7 +22395,11 @@
       var titleTechName = toTitleCase(techName);
       var camelTechName = techName.charAt(0).toLowerCase() + techName.slice(1); // get rid of the HTML5 video tag as soon as we are using another tech
 
+      console.log('_proto.loadTech_::titleTechName: ', titleTechName);
+      console.log('_proto.loadTech_::camelTechName: ', camelTechName);
+
       if (titleTechName !== 'Html5' && this.tag) {
+        console.log('_proto.loadTech_::titleTechName<>Html5 && ', this.tag);
         Tech.getTech('Html5').disposeMediaElement(this.tag);
         this.tag.player = null;
         this.tag = null;
@@ -22440,6 +22447,8 @@
 
 
       var TechClass = Tech.getTech(techName);
+
+      console.log('_proto.loadTech_::TechClass: ', TechClass);
 
       if (!TechClass) {
         throw new Error("No Tech named '" + titleTechName + "' exists! '" + titleTechName + "' should be registered using videojs.registerTech()'");
@@ -23428,18 +23437,31 @@
 
     _proto.techCall_ = function techCall_(method, arg) {
       // If it's not ready yet, call method when it is
+      console.log('_proto.techCall_::method: ', method);
+      console.log('_proto.techCall_::arg: ', arg);
+      console.log('_proto.techCall_::this: ', this);
       this.ready(function () {
+        console.log('_proto.techCall_::ready this: ', this);
+        console.log('_proto.techCall_::ready callback');
+        console.log('_proto.techCall_::ready middleware_: ', this.middleware_);
+        console.log('_proto.techCall_::ready tech_: ', this.tech_);
+        console.log('_proto.techCall_::allowedSetters: ', allowedSetters);
+        console.log('_proto.techCall_::allowedMediators: ', allowedMediators);
         if (method in allowedSetters) {
+          console.log('_proto.techCall_::set$1');
           return set$1(this.middleware_, this.tech_, method, arg);
         } else if (method in allowedMediators) {
+          console.log('_proto.techCall_::mediate');
           return mediate(this.middleware_, this.tech_, method, arg);
         }
 
         try {
           if (this.tech_) {
+            console.log('_proto.techCall_::tech_method: ', this.tech_[method]);
             this.tech_[method](arg);
           }
         } catch (e) {
+          console.log('_proto.techCall_::error: ', e);
           log(e);
           throw e;
         }
@@ -24262,7 +24284,7 @@
       this.changingSrc_ = true;
       this.cache_.sources = sources;
       this.updateSourceCaches_(sources[0]); // middlewareSource is the source after it has been changed by middleware
-
+      console.log('_proto.src::tech_', this.tech_);
       setSource(this, sources[0], function (middlewareSource, mws) {
         _this10.middleware_ = mws; // since sourceSet is async we have to update the cache again after we select a source since
         // the source that is selected could be out of order from the cache update above this callback.
@@ -24271,7 +24293,7 @@
 
         _this10.updateSourceCaches_(middlewareSource);
 
-        console.log(middlewareSource);
+        console.log('_proto.src::middlewareSource: ', middlewareSource);
 
         var err = _this10.src_(middlewareSource);
 
@@ -24320,12 +24342,13 @@
 
       var sourceTech = this.selectSource([source]);
 
-      console.log('sourceTech: ', sourceTech);
+      console.log('_proto.src_::sourceTech: ', sourceTech);
 
       if (!sourceTech) {
         return true;
       }
 
+      console.log('_proto.src_::sourceTech.tech: ', sourceTech.tech, 'techName_: ', this.techName_, !titleCaseEquals(sourceTech.tech, this.techName_));
       if (!titleCaseEquals(sourceTech.tech, this.techName_)) {
         this.changingSrc_ = true; // load this technology with the chosen source
 
@@ -24337,6 +24360,7 @@
       } // wait until the tech is ready to set the source
       // and set it synchronously if possible (#2326)
 
+      console.log('_proto.src_::tech_: ', this.tech_);
 
       this.ready(function () {
         // The setSource tech method was added with source handlers
@@ -24344,12 +24368,10 @@
         // We need to check the direct prototype for the case where subclasses
         // of the tech do not support source handlers
         if (this.tech_.constructor.prototype.hasOwnProperty('setSource')) {
-          console.log('setSource: ', source);
-          return false;
+          console.log('_proto.src_::setSource: ', source);
           this.techCall_('setSource', source);
         } else {
-          console.log('src: ', src);
-          return false;
+          console.log('_proto.src_::src: ', src);
           this.techCall_('src', source.src);
         }
 
