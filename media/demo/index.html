@@ -62,40 +62,44 @@
                 videoType = 'application/x-mpegURL';
             }
 
-            var videoElement = $("<video>")
-                    .attr({
-                        "class"             : "video-js",
-                        "controls"          : "true",
-                        "preload"           : "auto",
-                        "webkit-playsinline": "true",
-                        "playsinline"       : "true"
-                    })
-                    .appendTo("#player");
+            var domReady = function() {
+                var videoElement = $("<video>")
+                        .attr({
+                            "class"             : "video-js",
+                            "controls"          : "true",
+                            "preload"           : "auto",
+                            "webkit-playsinline": "true",
+                            "playsinline"       : "true"
+                        })
+                        .appendTo("#player");
 
-            var videoPlayer = $("#player > video")[0];
+                var videoPlayer = $("#player > video")[0];
 
-            //fix playback rate of hls on android
-            videojs.options.hls.overrideNative = true
+                //fix playback rate of hls on android
+                videojs.options.hls.overrideNative = true
 
-            var option = {
-                autoplay: true,
-                fluid: true,
-                controlBar: {
-                    volumePanel: {inline: false }
-                }
+                var option = {
+                    autoplay: true,
+                    fluid: true,
+                    controlBar: {
+                        volumePanel: {inline: false }
+                    }
+                };
+
+                var isPlayed = false;
+
+                video = videojs(videoPlayer, option);
+                video.poster(poster);
+
+                video.src([
+                    {
+                        type: videoType,
+                        src: src
+                    }
+                ]);
             };
 
-            var isPlayed = false;
-
-            video = videojs(videoPlayer, option);
-            video.poster(poster);
-
-            video.src([
-                {
-                    type: videoType,
-                    src: src
-                }
-            ]);
+            $(document).on("ready", domReady);
         })(jQuery);
     </script>
 </body>
