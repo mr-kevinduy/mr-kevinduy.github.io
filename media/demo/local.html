@@ -15,8 +15,8 @@
     <![endif]-->
 
     <!--[if lt IE 9]>
-    <script src="/media/js/html5shiv.js"></script>
-    <script src="/media/js/selectivizr.js"></script>
+    <script src="../js/html5shiv.js"></script>
+    <script src="../js/selectivizr.js"></script>
     <![endif]-->
 </head>
 
@@ -26,13 +26,13 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/media/js/lib.js"></script>
-    <script src="/media/js/common.js"></script>
+    <script src="../js/lib.js"></script>
+    <script src="../js/common.js"></script>
 
     <!--[if gt IE 9 | !IE ]><!-->
-    <script type="text/javascript" src="/media/js/video.js/7.3.0/video.js?v=1.0.0"></script>
-    <script type="text/javascript" src="/media/js/dash.all.min.js"></script>
-    <script type="text/javascript" src="/media/js/videojs-dash.js"></script>
+    <script type="text/javascript" src="../js/video.js/7.3.0/video.js?v=1.0.0"></script>
+    <script type="text/javascript" src="../js/dash.all.min.js"></script>
+    <script type="text/javascript" src="../js/videojs-dash.js"></script>
     <![endif]-->
 
     <script>
@@ -94,13 +94,13 @@
 
                 video.ready(function() {
                     console.log('video:ready');
-                    debugger;
+                    // debugger;
                 });
 
                 video.on("waiting", function () {
                     this.addClass("vjs-custom-waiting");
                     console.log('video:waiting');
-                    debugger;
+                    // debugger;
                 });
 
                 video.on("playing", function () {
@@ -111,7 +111,7 @@
                     }
 
                     console.log('video:playing');
-                    debugger;
+                    // debugger;
                 });
             };
 
