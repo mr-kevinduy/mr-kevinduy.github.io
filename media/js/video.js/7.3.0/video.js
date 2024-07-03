@@ -3743,7 +3743,7 @@
 
         console.log('triggerReady: ready');
         console.log('triggerReady: cancel');
-        // this.trigger('ready');
+        this.trigger('ready');
       }, 1);
     };
     /**
@@ -24371,7 +24371,7 @@
       // and set it synchronously if possible (#2326)
 
       console.log('_proto.src_::tech_: ', this.tech_);
-
+      debugger;
       this.ready(function () {
         // The setSource tech method was added with source handlers
         // so older techs won't support it
