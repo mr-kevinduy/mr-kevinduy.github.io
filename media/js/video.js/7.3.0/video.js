@@ -3742,7 +3742,8 @@
          */
 
         console.log('triggerReady: ready');
-        this.trigger('ready');
+        console.log('triggerReady: cancel');
+        // this.trigger('ready');
       }, 1);
     };
     /**
@@ -10958,9 +10959,15 @@
 
       name = toTitleCase(name);
 
+      console.log('Tech.getTech::techs_ :', Tech.techs_);
       if (Tech.techs_ && Tech.techs_[name]) {
+        // console.log('Tech.getTech::name :', name, ' Tech: ', Tech.techs_[name]);
+
         return Tech.techs_[name];
       }
+
+      console.log('Tech.getTech::name :', name);
+      console.log('Tech.getTech::videojs :', window$1.videojs);
 
       if (window$1 && window$1.videojs && window$1.videojs[name]) {
         log.warn("The " + name + " tech was added to the videojs object when it should be registered using videojs.registerTech(name, tech)");
@@ -11852,7 +11859,7 @@
       }, options);
       _this = _Component.call(this, player, options_, ready) || this; // If there are no sources when the player is initialized,
       // load the first supported playback technology.
-
+      // console.log('options_ : ', options_); return;
       if (!options.playerOptions.sources || options.playerOptions.sources.length === 0) {
         for (var i = 0, j = options.playerOptions.techOrder; i < j.length; i++) {
           var techName = toTitleCase(j[i]);
@@ -22448,13 +22455,15 @@
 
       var TechClass = Tech.getTech(techName);
 
-      console.log('_proto.loadTech_::TechClass: ', TechClass);
+      // console.log('_proto.loadTech_::TechClass: ', TechClass);
 
       if (!TechClass) {
         throw new Error("No Tech named '" + titleTechName + "' exists! '" + titleTechName + "' should be registered using videojs.registerTech()'");
       }
 
       this.tech_ = new TechClass(techOptions); // player.triggerReady is always async, so don't need this to be async
+      console.log('_proto.loadTech_::techOptions: ', techOptions);
+      console.log('_proto.loadTech_::new tech_: ', this.tech_);
 
       this.tech_.ready(bind(this, this.handleTechReady_), true);
       textTrackConverter.jsonToTextTracks(this.textTracksJson_ || [], this.tech_); // Listen to all HTML5-defined events and trigger them on the player
@@ -24257,6 +24266,7 @@
 
 
     _proto.src = function src(source) {
+      console.log('SRC ', source);
       var _this10 = this;
 
       // getter usage
