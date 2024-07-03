@@ -91,6 +91,28 @@
                         src: src
                     }
                 ]);
+
+                video.ready(function() {
+                    console.log('video:ready');
+                    debugger;
+                });
+
+                video.on("waiting", function () {
+                    this.addClass("vjs-custom-waiting");
+                    console.log('video:waiting');
+                    debugger;
+                });
+
+                video.on("playing", function () {
+                    this.removeClass("vjs-custom-waiting");
+
+                    if (!isPlayed) {
+                        isPlayed = true;
+                    }
+
+                    console.log('video:playing');
+                    debugger;
+                });
             };
 
             $(document).on("ready", domReady);
