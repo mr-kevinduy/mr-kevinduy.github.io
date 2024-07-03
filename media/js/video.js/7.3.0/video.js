@@ -24305,6 +24305,8 @@
 
         console.log('_proto.src::middlewareSource: ', middlewareSource);
 
+        debugger;
+        
         var err = _this10.src_(middlewareSource);
 
         if (err) {
@@ -24371,7 +24373,7 @@
       // and set it synchronously if possible (#2326)
 
       console.log('_proto.src_::tech_: ', this.tech_);
-      debugger;
+
       this.ready(function () {
         // The setSource tech method was added with source handlers
         // so older techs won't support it
