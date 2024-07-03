@@ -24267,6 +24267,8 @@
 
         _this10.updateSourceCaches_(middlewareSource);
 
+        console.log(middlewareSource);
+
         var err = _this10.src_(middlewareSource);
 
         if (err) {
@@ -24313,6 +24315,8 @@
 
       var sourceTech = this.selectSource([source]);
 
+      console.log('sourceTech: ', sourceTech);
+
       if (!sourceTech) {
         return true;
       }
@@ -24335,8 +24339,12 @@
         // We need to check the direct prototype for the case where subclasses
         // of the tech do not support source handlers
         if (this.tech_.constructor.prototype.hasOwnProperty('setSource')) {
+          console.log('setSource: ', source);
+          return false;
           this.techCall_('setSource', source);
         } else {
+          console.log('src: ', src);
+          return false;
           this.techCall_('src', source.src);
         }
 
