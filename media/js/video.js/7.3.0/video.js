@@ -3721,6 +3721,7 @@
     _proto.triggerReady = function triggerReady() {
       this.isReady_ = true; // Ensure ready is triggered asynchronously
 
+      console.log('triggerReady: ', this.isReady_);
       this.setTimeout(function () {
         var readyQueue = this.readyQueue_; // Reset Ready Queue
 
@@ -3728,6 +3729,7 @@
 
         if (readyQueue && readyQueue.length > 0) {
           readyQueue.forEach(function (fn) {
+            console.log('readyQueue: ', fn);
             fn.call(this);
           }, this);
         } // Allow for using event listeners also
@@ -3739,7 +3741,7 @@
          * @type {EventTarget~Event}
          */
 
-
+        console.log('triggerReady: ready');
         this.trigger('ready');
       }, 1);
     };
@@ -11416,7 +11418,9 @@
    */
 
   function setTech(middleware, tech) {
+    console.log('setTech');
     middleware.forEach(function (mw) {
+      console.log('setTech mw: ', mw);
       return mw.setTech && mw.setTech(tech);
     });
   }
@@ -24278,6 +24282,7 @@
 
           _this10.changingSrc_ = false; // We need to wrap this in a timeout to give folks a chance to add error event handlers
 
+          console.log('err _proto.src: setTimeout');
           _this10.setTimeout(function () {
             this.error({
               code: 4,
