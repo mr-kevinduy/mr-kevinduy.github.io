@@ -24295,6 +24295,7 @@
       this.cache_.sources = sources;
       this.updateSourceCaches_(sources[0]); // middlewareSource is the source after it has been changed by middleware
       console.log('_proto.src::tech_', this.tech_);
+      debugger;
       setSource(this, sources[0], function (middlewareSource, mws) {
         _this10.middleware_ = mws; // since sourceSet is async we have to update the cache again after we select a source since
         // the source that is selected could be out of order from the cache update above this callback.
@@ -24305,8 +24306,6 @@
 
         console.log('_proto.src::middlewareSource: ', middlewareSource);
 
-        debugger;
-        
         var err = _this10.src_(middlewareSource);
 
         if (err) {
